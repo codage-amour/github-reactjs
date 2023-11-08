@@ -1,0 +1,54 @@
+*{
+    color:white;
+}
+input{
+    color: black;
+}
+button{
+    color: black;
+}
+.searchdiv{
+    text-align: center;
+    position: relative;
+    bottom:19vh;
+}
+.searchdiv>form>input{
+    height: 4vh;
+    width:30vw;
+    border-radius: 1vw;
+    text-align: center;
+    font-size: 2vh;
+}
+.searchdiv>button{
+    background-color: white;
+    border:3px solid azure;
+    border-radius: 2vw;
+    height: 4.5vh;
+    font-size: 3vh;
+}
+.loading{
+    text-align: center;
+}
+.cat-animation {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.all{
+    text-align: center;
+}
+.avtar{
+    height: 10vw;
+    width: 10vw;
+}
+.all>p{
+    font-size: 2vw;
+}
+.user{
+    font-size: 4vw;
+    display: block;
+    padding: 2vw;
+ }
+
+
