@@ -17,6 +17,7 @@ function Data() {
   const [starred, setStarred] = useState([]);
   const [orgs, setOrgs] = useState([]);
   const [repos, setRepos] = useState([]);
+  const [showRepos, setShowRepos] = useState(false);
 
   const fetchGitHubData = async () => {
     setLoading(true);
@@ -63,7 +64,9 @@ function Data() {
   const toggleFollowing = () => {
     setShowFollowing(!showFollowing);
   };
-
+  const toggleRepos = () => {
+    setShowRepos(!showRepos);
+  };
   return (
     <div>
       <div className='searchdiv'>
@@ -120,7 +123,14 @@ function Data() {
           {showFollowers && <SeeFollowers followers={followers} />}
           <p>Organizations: {orgs.map(org => org.login).join(', ') || 'None'}</p>
           <p>Starred Repositories: {starred.length}</p>
+          <button className='see' onClick={toggleRepos}>
+        Show Repositories
+      </button>
+      {showRepos && (
+        <div className='repo'>
           <p>Repositories: {repos.map(repo => repo.name).join(', ') || 'None'}</p>
+        </div>
+      )}
         </div>
       )}
     </div>
