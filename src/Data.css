@@ -4,10 +4,11 @@
 input{
     color: black;
 }
-button{
+.search{
     color: black;
 }
 .searchdiv{
+    margin-top: 3vh;
     text-align: center;
     position: relative;
     bottom:19vh;
@@ -50,5 +51,14 @@ button{
     display: block;
     padding: 2vw;
  }
+.see{
+    height: 4vh;
+    width:10vw;
+    border-radius: 1vw;
+    text-align: center;
+    font-size: 2vh;
+    color: black;
+    font-weight: bold;
+}
 
 

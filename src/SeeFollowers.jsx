@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
+import './SeeFollowers.css';
 
 function SeeFollowers({ followers }) {
- const [showFollowers, setShowFollowers] = useState(false);
+  const [visibleFollowers, setVisibleFollowers] = useState(5);
 
- const handleClick = () => {
-    setShowFollowers(!showFollowers);
- };
+  const showMoreFollowers = () => {
+    setVisibleFollowers((prevVisibleFollowers) => prevVisibleFollowers + 5);
+  };
 
- return (
-    <div>
-      <button onClick={handleClick}>See Followers</button>
-      {showFollowers && (
-        <ul>
-          {followers.map((follower) => (
-            <li key={follower.login}>
-              <img src={follower.avatar_url} alt="Avatar" />
-              <a href={`https://github.com/${follower.login}`} target="_blank" rel="noreferrer">
-                {follower.login}
-              </a>
-            </li>
-          ))}
-        </ul>
+  return (
+    <div className='seefollow'>
+      {followers.length > 0 && (
+        <>
+          <ul>
+            {followers.slice(0, visibleFollowers).map((follower) => (
+              <li key={follower.login}>
+                <div>
+                  <img className='avtar' src={follower.avatar_url} alt={`${follower.login}'s avatar`} /><br />
+                  <a href={`https://github.com/${follower.login}`} target="_blank" rel="noreferrer">
+                    {follower.login}
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+          {visibleFollowers < followers.length && (
+            <button onClick={showMoreFollowers}>Show More</button>
+          )}
+        </>
       )}
     </div>
- );
+  );
 }
 
 export default SeeFollowers;
