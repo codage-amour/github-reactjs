@@ -25,7 +25,7 @@ function SeeFollowers({ followers }) {
             ))}
           </ul>
           {visibleFollowers < followers.length && (
-            <button onClick={showMoreFollowers}>Show More</button>
+            <button className='showmore' onClick={showMoreFollowers}>Show More</button>
           )}
         </>
       )}

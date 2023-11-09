@@ -1,11 +1,37 @@
 .seefollow{
     text-align: center;
 }
-ul {
-    list-style-type:none;
-}
 li{
     padding: 2vw;
+}
+.showmore{
+    height: 4vh;
+    width:8vw;
+    border-radius: 1vw;
+    text-align: center;
+    font-size: 2vh;
+    color: black;
+    font-weight: bold;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+li {
+    flex: 0 0 20%; 
+    box-sizing: border-box;
+    text-align: center;
+    margin: 10px 0;
+}
+  
+.avtar {
+    width: 80px;
+    height: 80px; 
+    border-radius: 50%;
+    object-fit: cover;
 }
   
   

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import SeeFollowers from './SeeFollowers';
+import SeeFollowing from './SeeFollowing';
 import './data.scss';
 import './Data.css';
 
@@ -10,6 +11,12 @@ function Data() {
   const [userData, setUserData] = useState(null);
   const [followers, setFollowers] = useState([]);
   const [showFollowers, setShowFollowers] = useState(false);
+  const [following, setFollowing] = useState([]);
+  const [showFollowing, setShowFollowing] = useState(false);
+  const [gists, setGists] = useState([]);
+  const [starred, setStarred] = useState([]);
+  const [orgs, setOrgs] = useState([]);
+  const [repos, setRepos] = useState([]);
 
   const fetchGitHubData = async () => {
     setLoading(true);
@@ -21,8 +28,28 @@ function Data() {
       const followersResponse = await axios.get(`https://api.github.com/users/${username}/followers`);
       const followersData = followersResponse.data;
 
+      const followingResponse = await axios.get(`https://api.github.com/users/${username}/following`);
+      const followingData = followingResponse.data;
+
+      const gistsResponse = await axios.get(`https://api.github.com/users/${username}/gists`);
+      const gistsData = gistsResponse.data;
+
+      const starredResponse = await axios.get(`https://api.github.com/users/${username}/starred`);
+      const starredData = starredResponse.data;
+
+      const orgsResponse = await axios.get(`https://api.github.com/users/${username}/orgs`);
+      const orgsData = orgsResponse.data;
+
+      const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`);
+      const reposData = reposResponse.data;
+
       setUserData(userData);
       setFollowers(followersData);
+      setFollowing(followingData);
+      setGists(gistsData);
+      setStarred(starredData);
+      setOrgs(orgsData);
+      setRepos(reposData);
     } catch (error) {
       console.error('Error fetching GitHub data:', error);
     } finally {
@@ -32,6 +59,9 @@ function Data() {
 
   const toggleFollowers = () => {
     setShowFollowers(!showFollowers);
+  };
+  const toggleFollowing = () => {
+    setShowFollowing(!showFollowing);
   };
 
   return (
@@ -79,11 +109,18 @@ function Data() {
           <p>Public Repos: {userData.public_repos}</p>
           <p>Public Gists: {userData.public_gists}</p>
           <p>Following: {userData.following}</p>
+          <button className='see' onClick={toggleFollowing}>
+            See Followings
+          </button>
+          {showFollowing && <SeeFollowing following={following} />}
           <p>Followers: {userData.followers}</p>
           <button className='see' onClick={toggleFollowers}>
             See Followers
           </button>
           {showFollowers && <SeeFollowers followers={followers} />}
+          <p>Organizations: {orgs.map(org => org.login).join(', ') || 'None'}</p>
+          <p>Starred Repositories: {starred.length}</p>
+          <p>Repositories: {repos.map(repo => repo.name).join(', ') || 'None'}</p>
         </div>
       )}
     </div>
