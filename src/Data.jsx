@@ -128,7 +128,7 @@ function Data() {
       </button>
       {showRepos && (
         <div className='repo'>
-          <p>Repositories: {repos.map(repo => repo.name).join(', ') || 'None'}</p>
+          <p>Repositories: {repos.map(repo => repo.name).join(' , ')|| 'None'}</p>
         </div>
       )}
         </div>

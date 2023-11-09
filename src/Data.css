@@ -1,6 +1,9 @@
 *{
     color:white;
 }
+h1{
+    font-size: 2vw;
+}
 input{
     color: black;
 }
@@ -8,24 +11,24 @@ input{
     color: black;
 }
 .searchdiv{
-    margin-top: 3vh;
     text-align: center;
     position: relative;
-    bottom:19vh;
+    bottom:8vw;
 }
 .searchdiv>form>input{
     height: 4vh;
     width:30vw;
     border-radius: 1vw;
     text-align: center;
-    font-size: 2vh;
+    font-size: 1.5vw;
 }
 .searchdiv>button{
     background-color: white;
     border:3px solid azure;
     border-radius: 2vw;
-    height: 4.5vh;
-    font-size: 3vh;
+    height: 2vw;
+    font-size: 1.3vw;
+   padding-bottom: 1.3vw;
 }
 .loading{
     text-align: center;
@@ -52,13 +55,14 @@ input{
     padding: 2vw;
  }
 .see{
-    height: 4vh;
+    height: 3vw;
     width:10vw;
     border-radius: 1vw;
     text-align: center;
-    font-size: 2vh;
+    font-size: 1vw;
     color: black;
     font-weight: bold;
+    border: none
 }
 .repo{
     font-size: 2vw;
