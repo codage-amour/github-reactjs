@@ -67,5 +67,8 @@ input{
 .repo{
     font-size: 2vw;
 }
-
+.notfound{
+    font-size: 2vw;
+    text-align: center;
+}
 

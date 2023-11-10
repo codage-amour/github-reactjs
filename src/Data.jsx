@@ -18,6 +18,8 @@ function Data() {
   const [orgs, setOrgs] = useState([]);
   const [repos, setRepos] = useState([]);
   const [showRepos, setShowRepos] = useState(false);
+  const [userNotFound, setUserNotFound] = useState(false);
+  const [mostUsedLanguage, setMostUsedLanguage] = useState(null);
 
   const fetchGitHubData = async () => {
     setLoading(true);
@@ -51,8 +53,30 @@ function Data() {
       setStarred(starredData);
       setOrgs(orgsData);
       setRepos(reposData);
+      setUserNotFound(false); 
+    
+      const allLanguages = reposData.reduce((languages, repo) => {
+        if (repo.language) {
+          if (languages[repo.language]) {
+            languages[repo.language]++;
+          } else {
+            languages[repo.language] = 1;
+          }
+        }
+        return languages;
+      }, {});
+
+      // Finding the most used language
+      const mostUsed = Object.keys(allLanguages).reduce((a, b) =>
+        allLanguages[a] > allLanguages[b] ? a : b
+      );
+
+      setMostUsedLanguage(mostUsed);
     } catch (error) {
       console.error('Error fetching GitHub data:', error);
+      if (error.response && error.response.status === 404) {
+        setUserNotFound(true);
+      }
     } finally {
       setLoading(false);
     }
@@ -102,6 +126,7 @@ function Data() {
           </div>
         )}
       </div>
+      {userNotFound && <p className='notfound'>No user found with the username: {username}</p>}
       {userData && (
         <div className='all'>
           <span className='user'>{userData.name || userData.login}</span>
@@ -122,6 +147,7 @@ function Data() {
           </button>
           {showFollowers && <SeeFollowers followers={followers} />}
           <p>Organizations: {orgs.map(org => org.login).join(', ') || 'None'}</p>
+          <p>Most Used Language: {mostUsedLanguage || 'Not available'}</p>
           <p>Starred Repositories: {starred.length}</p>
           <button className='see' onClick={toggleRepos}>
         Show Repositories
